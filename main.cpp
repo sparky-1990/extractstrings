@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
 
     if (inputFile.isEmpty()) {
         std::cerr << "Input file unspecified." << std::endl;
-        return 0;
+        return 1;
     }
 
     if (headerFile.isEmpty() && translationFile.isEmpty()) {
