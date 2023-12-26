@@ -62,6 +62,24 @@ void rcFile(const QString& inputFile, QString& headerFile, QString& translationF
 
             }
         }
+
+        QString convertStringName(QString& inputFile);
+        QString identifier = inputFile.toLower();
+
+        identifier.replace('_', '-');
+
+        if (identifier.startsWith("ids")) {
+                identifier.replace(0, 2, "str_id")
+
+                else if (identifier.startsWith("id(x)")) {
+                identifier.replace(0, 4, "str_id_x" )
+
+                else if (identifier.startsWith("afx")) {
+                identifier.replace(0, 2, "str_id_o" )
+                        };
+                };
+        };
+
     input.close();
     header.close();
     translation.close();
