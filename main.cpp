@@ -2,7 +2,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QCommandLineParser>
-#include <QMap>
 #include <iostream>
 
 //process the RC file and extract strings
