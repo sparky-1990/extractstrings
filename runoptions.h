@@ -1,4 +1,3 @@
-
 #ifndef RUNOPTIONS_H
 #define RUNOPTIONS_H
 #include <QString>

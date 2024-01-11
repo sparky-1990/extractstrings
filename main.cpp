@@ -26,12 +26,13 @@ int main(int argc, char *argv[]) {
 
     QCommandLineParser parser;
     parser.setApplicationDescription("Extract Strings from an RC file");
+    parser.addHelpOption();
 
 
     QCommandLineOption inputFileOption(QStringList() << "i" << "input", "Input file name", "filename");
     parser.addOption(inputFileOption);
 
-    QCommandLineOption headerFileOption(QStringList() << "h" << "header", "Header file name", "headerfilename");
+    QCommandLineOption headerFileOption(QStringList() << "header" << "header", "Header file name", "headerfilename");
     parser.addOption(headerFileOption);
 
     QCommandLineOption translationFileOption(QStringList() << "t" << "translation", "Translation file name", "translationfilename");
@@ -40,10 +41,10 @@ int main(int argc, char *argv[]) {
     QCommandLineOption appendOutputOption(QStringList() << "a" << "append", "Append output to target files");
     parser.addOption(appendOutputOption);
 
-    QCommandLineOption silentModeOption(QStringList() << "s" << "silent", "Run in silent mode");
+    QCommandLineOption silentModeOption(QStringList() << "silent" << "silent", "Run in silent mode");
     parser.addOption(silentModeOption);
 
-    QCommandLineOption verboseModeOption(QStringList() << "v" << "verbose", "Run in verbose mode");
+    QCommandLineOption verboseModeOption(QStringList() << "verbose" << "verbose", "Run in verbose mode");
     parser.addOption(verboseModeOption);
 
     parser.process(app);
@@ -127,7 +128,6 @@ void rcFile(RunOptions& myRunOptions, Statistics& myRunStats)
                 }
             }
 
-
         }
 
         input.close();
@@ -159,7 +159,7 @@ END
   */
 
 
-void handleLine(QString line,RunOptions& myRunOptions, Statistics& myRunStats )
+void handleLine(QString line, RunOptions& myRunOptions, Statistics& myRunStats )
 {
     // Line is already trimmed
 
@@ -211,15 +211,33 @@ void handleLine(QString line,RunOptions& myRunOptions, Statistics& myRunStats )
     qDebug() << identifier << " = " << text << Qt::endl;
 
     //TODO:  Now do something with the line
-    handleWriteHeader(identifier, text, myRunOptions, myRunStats);
 
-    handleWriteTransation(identifier, text, myRunOptions, myRunStats);
+    void handleWriteHeader(QString identifier, QString text, RunOptions& myRunOptions, Statistics& myRunStats);
+
+        if (myRunOptions.header && myRunOptions.headerStream)
+
+        {
+            // Write to the header file
+            *myRunOptions.headerStream << "#define " << identifier << " \"" << text << "\"" << Qt::endl;
+
+            myRunStats.headerWrites++;
+        }
+
+
+    void handleWriteTranslation(QString identifier, QString text, RunOptions& myRunOptions, Statistics& myRunStats);
+
+        if (myRunOptions.translation && myRunOptions.translationStream)
+
+        {
+            // Write to the translation file
+            *myRunOptions.translationStream << identifier << "=" << text << Qt::endl;
+
+            myRunStats.translationWrites++;
+        }
+
+
+        myRunOptions.header->close();
+        myRunOptions.translation->close();
 }
-void handleWriteHeader(QString identifier, QString text,RunOptions& myRunOptions,Statistics& myRunStats)
-{
-    //TODO
-}
-void handleWriteTransation(QString identifier, QString text,RunOptions& myRunOptions,Statistics& myRunStats)
-{
-    //TODO
-}
+
+

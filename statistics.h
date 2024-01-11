@@ -7,6 +7,8 @@ class Statistics
 public:
     int tables;
     int strings;
+    int headerWrites;
+    int translationWrites;
 
     Statistics();
 };

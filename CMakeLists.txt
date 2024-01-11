@@ -14,13 +14,14 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
 add_executable(extractstrings
   main.cpp
-  statistics.h statistics.cpp
-  runoptions.h runoptions.cpp
+  runoptions.h
+  statistics.h
+  statistics.cpp
+  runoptions.cpp
 )
 target_link_libraries(extractstrings Qt${QT_VERSION_MAJOR}::Core)
 
 include(GNUInstallDirs)
-
 install(TARGETS extractstrings
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
