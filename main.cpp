@@ -6,6 +6,8 @@
 #include "statistics.h"
 #include "runoptions.h"
 
+//Minor change
+
 void handleLine(QString line,RunOptions& myRunOptions, Statistics& myRunStats);
 void rcFile(RunOptions& myRunOptions, Statistics& myRunStats);
 
