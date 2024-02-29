@@ -15,6 +15,8 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 add_executable(extractstrings
   main.cpp
   runoptions.h
+  filehandler.h
+  filehandler.cpp
   statistics.h
   statistics.cpp
   runoptions.cpp
