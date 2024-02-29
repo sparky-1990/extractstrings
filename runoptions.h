@@ -3,6 +3,8 @@
 #include <QString>
 #include <QFile>
 #include <QTextStream>
+#include <QCoreApplication>
+
 class RunOptions
 {
 public:
@@ -22,6 +24,9 @@ public:
 
     QTextStream* translationStream;
     QFile* translation;
+
+    int ParseCommandLine(QCoreApplication& app);
+
 };
 
 #endif // RUNOPTIONS_H
