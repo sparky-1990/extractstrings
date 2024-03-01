@@ -33,9 +33,12 @@ void  testFileHandler::testHandleLine()
     FileHandler testHandler;
     RunOptions opts;
     Statistics stats;
-    QString line = "IDS_MUSTBE_POSITIVE     \"Item numbers must be between 1 and Count\"";
+    QString line = "   IDS_MUSTBE_POSITIVE     \"Item numbers must be between 1 and Count\"";
     testHandler.handleLine(line,opts,stats);
-    //QVERIFY2(stats.strings == 1, "Stats not 1");
+    QVERIFY2(stats.strings == 1, "Stats not 1");
+    line =  "     IDS_BEYOND_COUNT       \"Requested item is beyond the count of Items.\"";
+    testHandler.handleLine(line,opts,stats);
+    QVERIFY2(stats.strings == 2, "Stats not 2");
 
 }
 #include "testfilehandler.moc"

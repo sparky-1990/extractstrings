@@ -19,11 +19,11 @@ public:
     bool silentMode;
     bool verboseMode;
 
-    QFile* header;
-    QTextStream* headerStream;
+    QFile* header = nullptr;
+    QTextStream* headerStream = nullptr;
 
-    QTextStream* translationStream;
-    QFile* translation;
+    QTextStream* translationStream = nullptr;
+    QFile* translation = nullptr;
 
     int ParseCommandLine(QCoreApplication& app);
 

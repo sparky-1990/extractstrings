@@ -8,11 +8,12 @@ RunOptions::RunOptions() {
 
 RunOptions::~RunOptions()
 {
-    delete headerStream;
-    delete header;
 
-    delete translationStream;
-    delete translation;
+    if (headerStream != nullptr) delete headerStream;
+    if (header != nullptr) delete header;
+
+    if (translationStream != nullptr) delete translationStream;
+    if (translationStream != nullptr) delete translation;
 }
 
 
