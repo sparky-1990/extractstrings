@@ -8,7 +8,7 @@ class testFileHandler: public QObject
 private slots:
 
     [[maybe_unused]] void runTests();
-
+    void testHandleLine();
 
 
 };
@@ -16,7 +16,7 @@ private slots:
 
 [[maybe_unused]] void testFileHandler::runTests()
 {
-    FileHandler testHandler;
+    testHandleLine();
 
     //QVariantList list = {"1",2,"3","Column 4"};
     //auto rows = table.addRow(list);
@@ -28,6 +28,16 @@ private slots:
     //table.addRow(list);
 }
 
+void  testFileHandler::testHandleLine()
+{
+    FileHandler testHandler;
+    RunOptions opts;
+    Statistics stats;
+    QString line = "IDS_MUSTBE_POSITIVE     \"Item numbers must be between 1 and Count\"";
+    testHandler.handleLine(line,opts,stats);
+    //QVERIFY2(stats.strings == 1, "Stats not 1");
+
+}
 #include "testfilehandler.moc"
 
 QTEST_MAIN(testFileHandler)
